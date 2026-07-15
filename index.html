@@ -331,6 +331,29 @@ font-size:35px;
 
 
 
+<audio id="bgMusic" autoplay loop>
+    <source src="background-music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+window.addEventListener("load", function(){
+
+    let music = document.getElementById("bgMusic");
+
+    music.volume = 0.5;
+
+    music.play().catch(function(){
+
+        console.log("Browser blocked autoplay");
+
+    });
+
+});
+
+</script>
+    
+
 <body>
 
 
