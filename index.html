@@ -43,10 +43,13 @@ padding:20px;
 .card{
 
 max-width:650px;
+
 width:100%;
+
 min-height:750px;
 
 position:relative;
+
 overflow:hidden;
 
 border-radius:35px;
@@ -55,28 +58,37 @@ padding:45px 40px;
 
 text-align:center;
 
-background-image:
+
+background:
+
 linear-gradient(
-rgba(255,255,255,0.80),
-rgba(255,255,255,0.90)
+rgba(255,255,255,0.55),
+rgba(255,255,255,0.70)
 ),
-url("./Gemini_Generated_Image.png");
 
-background-repeat:no-repeat;
+url("Gemini_Generated_Image.png");
 
-background-size:cover;
+
+background-size:contain;
 
 background-position:center;
 
+background-repeat:no-repeat;
+
+background-color:white;
+
+
 box-shadow:
+
 0 25px 70px rgba(0,40,100,.25);
 
-border:2px solid white;
+
+border:2px solid rgba(255,255,255,.8);
+
 
 animation:appear 1.5s ease;
 
 }
-
 
 @keyframes appear{
 
