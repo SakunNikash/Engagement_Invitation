@@ -1,391 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sakun & Hasini Engagement Invitation</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-
-font-family:'Poppins',sans-serif;
-
-min-height:100vh;
-
-background:
-linear-gradient(135deg,#dcecff,#ffffff);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dcecff, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; /* Added vertical padding to allow breathing room for the tall card */
 }
-
 
 /* Invitation Card */
+.card {
+    /* Set precise sizing requested: 900px x 1600px */
+    width: 900px;
+    height: 1600px;
+    
+    position: relative;
+    overflow: hidden;
+    border-radius: 35px;
+    
+    /* Increased padding to naturally align and center elements within the 1600px height */
+    padding: 180px 60px; 
+    text-align: center;
+    
+    /* Flexbox inside the card to distribute invitation elements elegantly */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
 
-.card{
+    /* Applied the generated image as a full cover background with a soft semi-transparent overlay to enhance text readability */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), 
+        url("Gemini_Generated_Image.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-width:500px;
-
-height:890px;
-
-position:relative;
-
-overflow:hidden;
-
-border-radius:35px;
-
-padding:45px 40px;
-
-text-align:center;
-
-
-background-image:url("Gemini_Generated_Image.png");
-
-background-size:cover;
-
-background-position:center;
-
-background-repeat:no-repeat;
-
-
-box-shadow:
-0 25px 70px rgba(0,40,100,.25);
-
-
-border:2px solid rgba(255,255,255,.8);
-
-
-animation:appear 1.5s ease;
-
+    box-shadow: 0 25px 70px rgba(0, 40, 100, .25);
+    border: 2px solid rgba(255, 255, 255, .8);
+    animation: appear 1.5s ease;
 }
 
-@keyframes appear{
-
-from{
-opacity:0;
-transform:translateY(40px);
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-to{
-opacity:1;
-transform:translateY(0);
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 85px;
+    color: #0b3d91;
+    margin-bottom: 15px;
 }
 
+.subtitle {
+    font-size: 24px;
+    color: #222;
+    line-height: 1.8;
 }
 
-
-
-h1{
-
-font-family:'Great Vibes',cursive;
-
-font-size:75px;
-
-color:#0b3d91;
-
-margin-bottom:15px;
-
+.names {
+    font-size: 65px;
+    font-weight: 600;
+    color: #123b73;
+    margin: 40px 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-
-.subtitle{
-
-font-size:18px;
-
-color:#444;
-
-line-height:1.8;
-
+.heart {
+    color: #0b63ce;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
 }
 
-
-.names{
-
-font-size:45px;
-
-font-weight:600;
-
-color:#123b73;
-
-margin:30px 0;
-
+@keyframes pulse {
+    50% {
+        transform: scale(1.2);
+    }
 }
 
-
-.heart{
-
-color:#0b63ce;
-
-display:inline-block;
-
-animation:pulse 1.5s infinite;
-
+.details {
+    font-size: 26px;
+    line-height: 2.2;
+    color: #111;
+    margin: 40px 0;
+    font-weight: 400;
 }
 
-
-@keyframes pulse{
-
-50%{
-transform:scale(1.2);
+.details strong {
+    color: #0b3d91;
+    font-weight: 600;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-
-
-.details{
-
-font-size:18px;
-
-line-height:2;
-
-color:#333;
-
-margin:25px 0;
-
+.btn {
+    padding: 16px 45px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    transition: .3s;
 }
 
-
-.details strong{
-
-color:#0b3d91;
-
+.map {
+    background: #0b3d91;
+    color: white;
 }
 
-
-
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-margin-top:30px;
-
+.rsvp {
+    background: rgba(255, 255, 255, 0.9);
+    color: #0b3d91;
+    border: 2px solid #0b3d91;
 }
 
-
-.btn{
-
-padding:14px 35px;
-
-border-radius:40px;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.3s;
-
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
 }
 
-
-.map{
-
-background:#0b3d91;
-
-color:white;
-
+.footer {
+    margin-top: 40px;
+    font-size: 22px;
+    color: #333;
+    font-style: italic;
+    font-weight: 500;
 }
 
-
-.rsvp{
-
-background:white;
-
-color:#0b3d91;
-
-border:2px solid #0b3d91;
-
+/* Responsiveness for smaller screens */
+@media(max-width: 950px) {
+    .card {
+        width: 100%;
+        height: auto; /* Fallback to auto-height on small screens so it doesn't break mobile viewing */
+        aspect-ratio: 9/16; /* Maintains the 900x1600 aesthetic ratio */
+        padding: 8% 5%;
+    }
+    
+    h1 {
+        font-size: 7vw;
+    }
+    
+    .names {
+        font-size: 5.5vw;
+        margin: 20px 0;
+    }
+    
+    .subtitle {
+        font-size: 2.5vw;
+    }
+    
+    .details {
+        font-size: 2.5vw;
+        line-height: 1.8;
+    }
+    
+    .btn {
+        padding: 10px 25px;
+        font-size: 2.2vw;
+    }
+    
+    .footer {
+        font-size: 2.2vw;
+    }
 }
-
-
-
-.btn:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 8px 20px rgba(0,0,0,.2);
-
-}
-
-
-
-.footer{
-
-margin-top:35px;
-
-font-size:16px;
-
-color:#555;
-
-font-style:italic;
-
-}
-
-
-
-@media(max-width:700px){
-
-
-h1{
-
-font-size:55px;
-
-}
-
-
-.names{
-
-font-size:32px;
-
-}
-
-
-.card{
-
-padding:35px 25px;
-
-}
-
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="card">
+    <div>
+        <h1>You're Invited</h1>
+        <p class="subtitle">
+            Together with our families,<br>
+            we joyfully invite you to celebrate our<br>
+            <strong>Ring Ceremony</strong>
+        </p>
+    </div>
 
+    <div class="names">
+        Sakun <span class="heart">♥</span> Hasini
+    </div>
 
-<h1>
-You're Invited
-</h1>
+    <div>
+        <div class="details">
+            📅 <strong>Saturday, 22 July 2026</strong><br>
+            🕚 11:00 AM onwards<br>
+            📍 Mantara Villa<br>
+            Matara, Sri Lanka
+        </div>
 
+        <div class="buttons">
+            <a class="btn map" href="https://www.google.com/maps/place/Mantara+Villa+%2F+Hotel/@5.959134,80.5573089" target="_blank">
+                View Location
+            </a>
+            <a class="btn rsvp" href="https://forms.google.com" target="_blank">
+                RSVP
+            </a>
+        </div>
 
-<p class="subtitle">
-
-Together with our families,<br>
-
-we joyfully invite you to celebrate our
-
-<br>
-
-<strong>Ring Ceremony</strong>
-
-</p>
-
-
-
-<div class="names">
-
-Sakun
-
-<span class="heart">♥</span>
-
-Hasini
-
+        <div class="footer">
+            We can't wait to celebrate this beautiful moment with you 💙
+        </div>
+    </div>
 </div>
-
-
-
-
-<div class="details">
-
-
-📅 <strong>Saturday, 22 July 2026</strong>
-
-<br>
-
-
-🕚 11:00 AM onwards
-
-
-<br>
-
-
-📍 Mantara Villa
-
-<br>
-
-Matara, Sri Lanka
-
-
-</div>
-
-
-
-<div class="buttons">
-
-
-<a
-
-class="btn map"
-
-href="https://www.google.com/maps/place/Mantara+Villa+%2F+Hotel/@5.959134,80.5573089"
-
-target="_blank">
-
-View Location
-
-</a>
-
-
-
-<a
-
-class="btn rsvp"
-
-href="https://forms.google.com"
-
-target="_blank">
-
-RSVP
-
-</a>
-
-
-</div>
-
-
-
-<div class="footer">
-
-We can't wait to celebrate this beautiful moment with you 💙
-
-</div>
-
-
-
-</div>
-
 
 </body>
-
 </html>
