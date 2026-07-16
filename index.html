@@ -334,27 +334,9 @@ font-size:35px;
 
 
 
-<audio id="bgMusic" autoplay loop>
-    <source src="background-music.mp3" type="audio/mp3">
+<audio id="bgMusic" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-
-window.addEventListener("load", function(){
-
-    let music = document.getElementById("bgMusic");
-
-    music.volume = 0.5;
-
-    music.play().catch(function(){
-
-        console.log("Browser blocked autoplay");
-
-    });
-
-});
-
-</script>
     
 
 <body>
@@ -465,6 +447,28 @@ View Location
 </div>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+
+    function startMusic() {
+        music.play().catch(function(err){
+            console.log(err);
+        });
+
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    document.addEventListener("click", startMusic);
+    document.addEventListener("touchstart", startMusic);
+
+});
+</script>
+    
+    
 </body>
 
 </html>
