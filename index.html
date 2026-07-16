@@ -1,493 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sakun & Hasini Engagement Invitation</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-body{
-
-font-family:'Poppins',sans-serif;
-
-min-height:100vh;
-
-background:
-linear-gradient(135deg,#dcecff,#ffffff);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dcecff, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeInPage 1s ease forwards;
 }
 
+@keyframes fadeInPage {
+    to { opacity: 1; }
+}
 
 /* Main invitation */
-
-.card{
-    width:500px;
-    max-width:95vw;
-    min-height:890px;
-    height:auto;
-    position:relative;
-    overflow:hidden;
-    border-radius:35px;
-    box-shadow:0 25px 70px rgba(0,40,100,.30);
-    border:3px solid white;
+.card {
+    width: 500px;
+    max-width: 95vw;
+    min-height: 890px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 35px;
+    box-shadow: 0 25px 70px rgba(0, 40, 100, .30);
+    border: 3px solid white;
+    animation: appear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
+@keyframes appear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Background invitation image */
-
-.invitation-bg{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-border-radius:35px;
-
-z-index:1;
-
+.invitation-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 35px;
+    z-index: 1;
 }
-
 
 /* White transparent layer for readability */
-
-.overlay{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-background:
-rgba(255,255,255,0.35);
-
-z-index:2;
-
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: 2;
 }
-
 
 /* Content */
-
-.content{
-
-position:relative;
-
-z-index:3;
-
-height:100%;
-
-padding:50px 40px;
-
-text-align:center;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
+.content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    padding: 50px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-
-
-h1{
-
-font-family:'Great Vibes',cursive;
-
-font-size:70px;
-
-color:#083b82;
-
-margin-top:20px;
-
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 70px;
+    color: #083b82;
+    margin-top: 20px;
 }
 
-
-
-.subtitle{
-
-font-family:'Poppins', sans-serif;
-
-font-size:24px;
-
-font-weight:400;
-
-letter-spacing:0.5px;
-
-line-height:1.7;
-
-color:#07346f;
-
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+    color: #07346f;
 }
 
-.subtitle strong{
-
-font-family:'Great Vibes',cursive;
-
-font-size:34px;
-
-color:#083b82;
-
+.subtitle strong {
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+    color: #083b82;
 }
 
-
-
-.names{
-
-font-size:45px;
-
-font-weight:600;
-
-color:#07346f;
-
-margin:35px 0;
-
+.names {
+    font-size: 45px;
+    font-weight: 600;
+    color: #07346f;
+    margin: 35px 0;
 }
 
-
-
-.heart{
-
-color:#1b66c9;
-
-animation:pulse 1.5s infinite;
-
-display:inline-block;
-
+.heart {
+    color: #1b66c9;
+    animation: pulse 1.5s infinite;
+    display: inline-block;
 }
 
-
-@keyframes pulse{
-
-50%{
-
-transform:scale(1.2);
-
+@keyframes pulse {
+    50% { transform: scale(1.2); }
 }
 
+.details {
+    font-size: 17px;
+    line-height: 2;
+    color: #222;
 }
 
-
-
-.details{
-
-font-size:17px;
-
-line-height:2;
-
-color:#222;
-
+.details strong {
+    color: #07346f;
 }
 
-
-
-.details strong{
-
-color:#07346f;
-
+.buttons {
+    display: flex;
+    width: 100%;
+    margin-top: 35px;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
-.buttons{
-
-display:flex;
-
-width:100%;
-
-margin-top:35px;
-
-justify-content:center;
-
-align-items:center;
-
+.btn {
+    padding: 13px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
 }
 
-
-
-.btn{
-
-padding:13px 28px;
-
-border-radius:40px;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.3s;
-
+.location {
+    background: #083b82;
+    color: white;
 }
 
-
-
-.location{
-
-background:#083b82;
-
-color:white;
-
+.btn:hover {
+    transform: translateY(-5px);
 }
 
-
-
-.btn:hover{
-
-transform:translateY(-5px);
-
+.footer {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #333;
+    font-style: italic;
+    line-height: 1.6;
 }
 
-
-
-.footer{
-
-margin-top:25px;
-
-font-size:15px;
-
-color:#333;
-
-font-style:italic;
-
-line-height:1.6;
-
+@media(max-width: 600px) {
+    .card {
+        width: 95vw;
+        height: 168vw;
+        max-height: 900px;
+    }
+    .content {
+        padding: 35px 25px;
+    }
+    h1 { font-size: 55px; }
+    .names { font-size: 35px; }
 }
-
-
-
-
-@media(max-width:600px){
-
-
-.card{
-
-width:95vw;
-
-height:168vw;
-
-max-height:900px;
-
-}
-
-
-.content{
-
-padding:35px 25px;
-
-}
-
-
-h1{
-
-font-size:55px;
-
-}
-
-
-.names{
-
-font-size:35px;
-
-}
-
-
-}
-
 </style>
-
 </head>
-    
 
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
     <source src="background-music.mp3" type="audio/mpeg">
 </audio>
 
-
 <div class="card">
+    <img class="invitation-bg" src="Gemini_Generated_Image.jpeg" alt="Engagement Invitation Background">
+    <div class="overlay"></div>
 
+    <div class="content">
+        <h1>You're Invited</h1>
+        
+        <p class="subtitle">
+            Together with our families,<br>
+            we joyfully invite you to celebrate our<br>
+            <strong>Ring Ceremony</strong>
+        </p>
 
-<img 
-class="invitation-bg"
-src="Gemini_Generated_Image.jpeg"
-alt="Engagement Invitation Background">
+        <div class="names">
+            Sakun <span class="heart">♥</span> Hasini
+        </div>
 
+        <div class="details">
+            📅 <strong>Wednesday, 22 July 2026</strong><br>
+            🕚 11:00 AM onwards<br>
+            📍 Mantara Villa<br>
+            Matara, Sri Lanka
+        </div>
 
-<div class="overlay"></div>
+        <div class="buttons">
+            <a class="btn location" href="https://maps.app.goo.gl/6m9KC7otSxXGAVwY8" target="_blank">
+                View Location
+            </a>
+        </div>
 
-
-
-<div class="content">
-
-
-<h1>
-You're Invited
-</h1>
-
-
-
-<p class="subtitle">
-
-Together with our families,<br>
-
-we joyfully invite you to celebrate our
-
-<br>
-
-<strong>Ring Ceremony</strong>
-
-</p>
-
-
-
-
-<div class="names">
-
-Sakun
-
-<span class="heart">♥</span>
-
-Hasini
-
+        <div class="footer">
+            <b>We would be honored to have you share in our special moment 💙</b>
+        </div>
+    </div>
 </div>
-
-
-
-
-<div class="details">
-
-
-📅 <strong>Wednesday, 22 July 2026</strong>
-
-<br>
-
-
-🕚 11:00 AM onwards
-
-<br>
-
-
-📍 Mantara Villa
-
-<br>
-
-Matara, Sri Lanka
-
-
-</div>
-
-
-
-
-<div class="buttons">
-
-<a
-class="btn location"
-href="https://maps.app.goo.gl/6m9KC7otSxXGAVwY8"
-target="_blank">
-
-View Location
-
-</a>
-
-</div>
-
-
-
-
-<div class="footer">
-
-<b>We would be honored to have you share in our special moment 💙</b>
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const music = document.getElementById("bgMusic");
     music.volume = 0.5;
 
-    let hasPlayed = false;
+    // Read URL param parameter passed from envelope.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldAutoplay = urlParams.get('autoplay');
 
-    function startMusic(event) {
-        if (hasPlayed) return;
-
-        music.play()
-            .then(() => {
-                hasPlayed = true;
-                console.log("Music started successfully via event:", event.type);
-                removeListeners();
-            })
-            .catch(err => {
-                console.log("Playback engine waiting for alternative gesture...", err);
-            });
+    if (shouldAutoplay === 'true') {
+        music.play().catch(err => {
+            console.log("Browser safety fallback triggered. Music requires a fallback action click:", err);
+            // Universal fallback listener just in case a mobile browser requires one more page click
+            document.addEventListener("click", () => { music.play(); }, { once: true });
+        });
     }
-
-    function removeListeners() {
-        document.removeEventListener("click", startMusic);
-        document.removeEventListener("touchstart", startMusic);
-        document.removeEventListener("pointerdown", startMusic);
-        
-        // Remove scroll triggers
-        window.removeEventListener("scroll", startMusic);
-        document.removeEventListener("touchmove", startMusic);
-    }
-
-    // Capture explicit tap actions
-    document.addEventListener("click", startMusic, { once: true });
-    document.addEventListener("touchstart", startMusic, { once: true });
-    document.addEventListener("pointerdown", startMusic, { once: true });
-
-    // Capture scrolling actions (useful for users who swipe down immediately)
-    window.addEventListener("scroll", startMusic, { passive: true });
-    document.addEventListener("touchmove", startMusic, { passive: true });
 });
 </script>
     
-    
 </body>
-
 </html>
