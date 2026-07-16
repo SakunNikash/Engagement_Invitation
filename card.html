@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +22,13 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeInPage 1s ease forwards;
+}
+
+@keyframes fadeInPage {
+    to { opacity: 1; }
 }
 
 /* Main invitation */
@@ -36,6 +42,16 @@ body {
     border-radius: 35px;
     box-shadow: 0 25px 70px rgba(0, 40, 100, .30);
     border: 3px solid white;
+    animation: appear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Background invitation image */
@@ -161,7 +177,9 @@ h1 {
         height: 168vw;
         max-height: 900px;
     }
-    .content { padding: 35px 25px; }
+    .content {
+        padding: 35px 25px;
+    }
     h1 { font-size: 55px; }
     .names { font-size: 35px; }
 }
@@ -170,13 +188,12 @@ h1 {
 
 <body>
 
-<!-- Setup pointing directly to root file asset -->
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
     <source src="background-music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
-    <!-- FIXED: Added "third/" folder prefix path for the image -->
+    <!-- FIXED: Added the correct "third/" folder prefix path -->
     <img class="invitation-bg" src="third/Gemini_Generated_Image.jpeg" alt="Engagement Invitation Background">
     <div class="overlay"></div>
 
@@ -216,41 +233,30 @@ h1 {
 document.addEventListener("DOMContentLoaded", function () {
     const music = document.getElementById("bgMusic");
     music.volume = 0.5;
-    let hasPlayed = false;
 
-    // FIXED: Cleaned up the double function declaration nesting bug
-    function triggerAudioPlayback(event) {
-        if (hasPlayed) return;
+    // Read URL param parameter passed from index.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldAutoplay = urlParams.get('autoplay');
 
-        music.play()
-            .then(() => {
-                console.log("Music started smoothly via event:", event.type);
-                hasPlayed = true;
-                removeListeners();
-            })
-            .catch(err => {
-                console.log("Autoplay blocked, waiting for alternative gesture context...", err);
-            });
+    if (shouldAutoplay === 'true') {
+        music.play().catch(err => {
+            console.log("Browser safety fallback triggered. Music requires user tap gesture context:", err);
+            
+            // Shared internal function to handle user interaction triggers safely
+            function forcePlayMusic() {
+                music.play().then(() => {
+                    document.removeEventListener("click", forcePlayMusic);
+                    document.removeEventListener("touchstart", forcePlayMusic);
+                });
+            }
+
+            // FIXED: Added touchstart to handle swift mobile screen interactions smoothly
+            document.addEventListener("click", forcePlayMusic);
+            document.addEventListener("touchstart", forcePlayMusic);
+        });
     }
-
-    function removeListeners() {
-        document.removeEventListener("click", triggerAudioPlayback);
-        document.removeEventListener("touchstart", triggerAudioPlayback);
-        document.removeEventListener("pointerdown", triggerAudioPlayback);
-        window.removeEventListener("scroll", triggerAudioPlayback);
-        document.removeEventListener("touchmove", triggerAudioPlayback);
-    }
-
-    // Capture explicit screen tap interactions
-    document.addEventListener("click", triggerAudioPlayback, { once: true });
-    document.addEventListener("touchstart", triggerAudioPlayback, { once: true });
-    document.addEventListener("pointerdown", triggerAudioPlayback, { once: true });
-
-    // Capture immediate scrolling interactions as user behavior confirmation
-    window.addEventListener("scroll", triggerAudioPlayback, { passive: true });
-    document.addEventListener("touchmove", triggerAudioPlayback, { passive: true });
 });
 </script>
-
+    
 </body>
 </html>
