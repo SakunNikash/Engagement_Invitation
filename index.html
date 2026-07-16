@@ -79,7 +79,8 @@ body {
     left: 25px;
     width: 400px;
     height: 260px;
-    background: white url("Gemini_Generated_Image.jpeg") center/cover no-repeat;
+    /* FIXED: Adjusted pointer link inside the subfolder assets location */
+    background: white url("third/Gemini_Generated_Image.jpeg") center/cover no-repeat;
     border-radius: 10px;
     z-index: 2;
     transition: transform 0.8s ease-in-out 0.6s;
@@ -120,7 +121,8 @@ body {
 
 /* --- ANIMATION STATES WHEN TAPPED --- */
 .envelope-wrapper.open .envelope-flap {
-    transform: rotateX(180px);
+    /* FIXED: Swapped structural error identifier units from px over to deg */
+    transform: rotateX(180deg);
     z-index: 1; /* Drop behind the card layer once flipped open */
 }
 
@@ -190,7 +192,7 @@ function animateAndRedirect() {
         transitionOverlay.classList.add("active");
     }, 1300);
 
-    // Step 3: Route smoothly to index.html with autoplay enabled flag
+    // Step 3: Route smoothly to card.html with autoplay enabled flag
     setTimeout(() => {
         window.location.href = "card.html?autoplay=true";
     }, 2100);
