@@ -193,7 +193,6 @@ h1 {
 </audio>
 
 <div class="card">
-    <!-- FIXED: Added the correct "third/" folder prefix path -->
     <img class="invitation-bg" src="third/Gemini_Generated_Image.jpeg" alt="Engagement Invitation Background">
     <div class="overlay"></div>
 
@@ -234,15 +233,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const music = document.getElementById("bgMusic");
     music.volume = 0.5;
 
-    // Read URL param parameter passed from index.html
+    // Read URL parameters passed from index.html
     const urlParams = new URLSearchParams(window.location.search);
     const shouldAutoplay = urlParams.get('autoplay');
 
     if (shouldAutoplay === 'true') {
+        // Attempt clean transition auto-playback
         music.play().catch(err => {
-            console.log("Browser safety fallback triggered. Music requires user tap gesture context:", err);
+            console.log("Mobile browser cross-page protection active. Subscribing touch listeners.", err);
             
-            // Shared internal function to handle user interaction triggers safely
             function forcePlayMusic() {
                 music.play().then(() => {
                     document.removeEventListener("click", forcePlayMusic);
@@ -250,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
 
-            // FIXED: Added touchstart to handle swift mobile screen interactions smoothly
+            // Universal phone safety fallbacks: runs the split-second they scroll or tap the invitation card
             document.addEventListener("click", forcePlayMusic);
             document.addEventListener("touchstart", forcePlayMusic);
         });
