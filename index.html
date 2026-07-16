@@ -21,32 +21,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
     perspective: 1000px;
-    padding: 20px;
 }
 
-/* --- SCREEN 1: ENVELOPE INTERFACE --- */
-.envelope-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #dcecff, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.envelope-screen.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
+/* Envelope Container */
 .envelope-wrapper {
     position: relative;
     width: 450px;
@@ -63,6 +42,7 @@ body {
     transform: translateY(-10px);
 }
 
+/* Front Flaps of Envelope using Borders */
 .envelope-wrapper::before {
     content: '';
     position: absolute;
@@ -77,6 +57,7 @@ body {
     z-index: 3;
 }
 
+/* The Top Flap (Lid) */
 .envelope-flap {
     position: absolute;
     top: 0;
@@ -91,6 +72,7 @@ body {
     transition: transform 0.6s ease-in-out;
 }
 
+/* Hidden Card Peek inside the envelope */
 .letter-preview {
     position: absolute;
     bottom: 10px;
@@ -117,6 +99,7 @@ body {
     pointer-events: none;
 }
 
+/* Prompt Hint Styling */
 .tap-hint {
     position: absolute;
     bottom: -60px;
@@ -135,242 +118,82 @@ body {
     50% { transform: translateY(-5px); }
 }
 
+/* --- ANIMATION STATES WHEN TAPPED --- */
 .envelope-wrapper.open .envelope-flap {
     transform: rotateX(180deg);
-    z-index: 1;
+    z-index: 1; /* Drop behind the card layer once flipped open */
 }
 
 .envelope-wrapper.open .letter-preview {
     transform: translateY(-180px) scale(1.05);
 }
 
-/* --- SCREEN 2: MAIN INVITATION CARD --- */
-.card {
-    width: 500px;
-    max-width: 95vw;
-    min-height: 890px;
-    height: auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 35px;
-    box-shadow: 0 25px 70px rgba(0, 40, 100, .30);
-    border: 3px solid white;
+/* Smooth Page Fade-out transition */
+.fade-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #dcecff, #ffffff);
+    z-index: 9999;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    transition: opacity 0.8s ease;
 }
-
-.card.show {
+.fade-screen.active {
     opacity: 1;
-    transform: translateY(0);
 }
 
-.invitation-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 35px;
-    z-index: 1;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.35);
-    z-index: 2;
-}
-
-.content {
-    position: relative;
-    z-index: 3;
-    height: 100%;
-    padding: 50px 40px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 70px;
-    color: #083b82;
-    margin-top: 20px;
-}
-
-.subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    line-height: 1.7;
-    color: #07346f;
-}
-
-.subtitle strong {
-    font-family: 'Great Vibes', cursive;
-    font-size: 34px;
-    color: #083b82;
-}
-
-.names {
-    font-size: 45px;
-    font-weight: 600;
-    color: #07346f;
-    margin: 35px 0;
-}
-
-.heart {
-    color: #1b66c9;
-    animation: pulse 1.5s infinite;
-    display: inline-block;
-}
-
-@keyframes pulse {
-    50% { transform: scale(1.2); }
-}
-
-.details {
-    font-size: 17px;
-    line-height: 2;
-    color: #222;
-}
-
-.details strong {
-    color: #07346f;
-}
-
-.buttons {
-    display: flex;
-    width: 100%;
-    margin-top: 35px;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn {
-    padding: 13px 28px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.location {
-    background: #083b82;
-    color: white;
-}
-
-.btn:hover {
-    transform: translateY(-5px);
-}
-
-.footer {
-    margin-top: 25px;
-    font-size: 15px;
-    color: #333;
-    font-style: italic;
-    line-height: 1.6;
-}
-
-@media(max-width: 600px) {
-    .card {
-        width: 95vw;
-        height: 168vw;
-        max-height: 900px;
+@media(max-width: 500px) {
+    .envelope-wrapper {
+        width: 320px;
+        height: 213px;
     }
-    .content { padding: 35px 25px; }
-    h1 { font-size: 55px; }
-    .names { font-size: 35px; }
-    
-    .envelope-wrapper { width: 320px; height: 213px; }
-    .envelope-wrapper::before { border-width: 106.5px 160px 106.5px 160px; }
-    .envelope-flap { border-width: 106.5px 160px 0 160px; }
-    .letter-preview { width: 280px; height: 190px; left: 20px; }
+    .envelope-wrapper::before {
+        border-width: 106.5px 160px 106.5px 160px;
+    }
+    .envelope-flap {
+        border-width: 106.5px 160px 0 160px;
+    }
+    .letter-preview {
+        width: 280px;
+        height: 190px;
+        left: 20px;
+    }
     .letter-text { font-size: 28px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Audio file tracked directly in root structure -->
-<audio id="bgMusic" loop preload="auto">
-    <source src="background-music.mp3" type="audio/mpeg">
-</audio>
+<div class="fade-screen" id="transitionOverlay"></div>
 
-<!-- Envelope Overlay Module -->
-<div class="envelope-screen" id="envelopeScreen">
-    <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
-        <div class="envelope-flap"></div>
-        <div class="letter-preview">
-            <div class="letter-text">Sakun & Hasini</div>
-        </div>
-        <div class="tap-hint">Tap to Open Envelope</div>
+<div class="envelope-wrapper" id="envelope" onclick="animateAndRedirect()">
+    <div class="envelope-flap"></div>
+    <div class="letter-preview">
+        <div class="letter-text">Sakun & Hasini</div>
     </div>
-</div>
-
-<!-- Main Invitation Display Card -->
-<div class="card" id="mainCard">
-    <img class="invitation-bg" src="third/Gemini_Generated_Image.jpeg" alt="Engagement Invitation Background">
-    <div class="overlay"></div>
-
-    <div class="content">
-        <h1>You're Invited</h1>
-        
-        <p class="subtitle">
-            Together with our families,<br>
-            we joyfully invite you to celebrate our<br>
-            <strong>Ring Ceremony</strong>
-        </p>
-
-        <div class="names">
-            Sakun <span class="heart">♥</span> Hasini
-        </div>
-
-        <div class="details">
-            📅 <strong>Wednesday, 22 July 2026</strong><br>
-            🕚 11:00 AM onwards<br>
-            📍 Mantara Villa<br>
-            Matara, Sri Lanka
-        </div>
-
-        <div class="buttons">
-            <a class="btn location" href="https://maps.app.goo.gl/6m9KC7otSxXGAVwY8" target="_blank">
-                View Location
-            </a>
-        </div>
-
-        <div class="footer">
-            <b>We would be honored to have you share in our special moment 💙</b>
-        </div>
-    </div>
+    <div class="tap-hint">Tap to Open Envelope</div>
 </div>
 
 <script>
-function openInvitation() {
-    const music = document.getElementById("bgMusic");
+function animateAndRedirect() {
     const envelope = document.getElementById("envelope");
-    const envelopeScreen = document.getElementById("envelopeScreen");
-    const mainCard = document.getElementById("mainCard");
-
-    // Instant interaction means the browser bypasses the autoplay block instantly!
-    music.volume = 0.5;
-    music.play().catch(err => console.log("Audio play gesture catch:", err));
-
-    // Fire animations
+    const transitionOverlay = document.getElementById("transitionOverlay");
+    
+    // Step 1: Trigger the 3D flap and paper slideout animations
     envelope.classList.add("open");
-
-    // Cross-fade the envelope screen out and showcase the main invitation card
+    
+    // Step 2: Smoothly fade out screen after card finishes lifting up
     setTimeout(() => {
-        envelopeScreen.classList.add("hide");
-        mainCard.classList.add("show");
-    }, 1400);
+        transitionOverlay.classList.add("active");
+    }, 1300);
+
+    // Step 3: Route smoothly to card.html with autoplay enabled flag
+    setTimeout(() => {
+        window.location.href = "card.html?autoplay=true";
+    }, 2100);
 }
 </script>
 
